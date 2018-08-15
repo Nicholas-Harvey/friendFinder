@@ -3,5 +3,6 @@ body{
 }
 
 #jumbotron{
-    width: 75%;
+    width: 75px;
+    color: orange;
 }
