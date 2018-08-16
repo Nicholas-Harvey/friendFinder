@@ -10,6 +10,9 @@
             crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" media="screen" href="/style/bootstrap.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="/style/style.css" />
+        <script src="https://code.jquery.com/jquery-3.3.1.js"
+ integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+ crossorigin="anonymous"></script>
         <script src="/app/data/friends.js"></script>
     </head>
 
@@ -19,15 +22,22 @@
                 <h1 class="display-4">Friend Finder: Survey Page</h1>
                 <p class="lead">Page is where you will answer a set of questions that will determin who a good friend to recomend to you
                     would be.</p>
-                    <button type="button" class="btn btn-info" href="home.html">Return to home-page</button>
             </div>
         </div>
-
-    </body>
+        <form>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Name</label>
+                  <input type="text/plain" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your name, friend">
+                </div>
+                <div class="form-group">
+                  <label for="Profile_image">Profile Image</label>
+                  <input type="text/plain" class="form-control" id="exampleInputPassword1" placeholder="paste file here">
+                </div>
+             </form>
     <div class="dropdownContainer">
     <div class="row">
         <div class="col-md-4">
-                <select id="questionOne">
+                <select id="questionOne" class = "question">
                         <option value="">1) You are someone who enjoys to travel.</option>
                         <option value="1">1 (Strong disagree)</option>
                         <option value="2">2</option>
@@ -55,7 +65,7 @@
     <br>
     <div class="row">
         <div class="col-md-4">
-                <select id="questionTwo">
+                <select id="questionTwo" class = "question">
                         <option value="">2) You are someone with a lot of ambition.</option>
                         <option value="1">1 (Strong disagree)</option>
                         <option value="2">2</option>
@@ -83,7 +93,7 @@
     <br>
     <div class="row">
         <div class="col-md-4">
-                <select id="questionThree">
+                <select id="questionThree" class = "question">
                         <option value="">3) You enjoy exclusively listening to music from the 90's.</option>
                         <option value="1">1 (Strong disagree)</option>
                         <option value="2">2</option>
@@ -111,7 +121,7 @@
     <br>
     <div class="row">
         <div class="col-md-4">
-                <select id="questionFour">
+                <select id="questionFour" class = "question">
                         <option value="">4) You think that the Empire did nothing wrong.</option>
                         <option value="1">1 (Strong disagree)</option>
                         <option value="2">2</option>
@@ -139,7 +149,7 @@
     <br>
     <div class="row">
         <div class="col-md-4">
-                <select id="questionFive">
+                <select id="questionFive" class = "question">
                         <option value="">5) You think that Billy Joel is the man.</option>
                         <option value="1">1 (Strong disagree)</option>
                         <option value="2">2</option>
@@ -167,7 +177,7 @@
     <br>
     <div class="row">
         <div class="col-md-4">
-                <select id="questionSix">
+                <select id="questionSix" class = "question">
                         <option value="">5) You can play an instrument</option>
                         <option value="1">1 (Strong disagree)</option>
                         <option value="2">2</option>
@@ -195,7 +205,7 @@
     <br>
     <div class="row">
         <div class="col-md-4">
-                <select id="questionSeven">
+                <select id="questionSeven" class = "question">
                         <option value="">7) 'Hunky Dory' is David Bowie's best album.</option>
                         <option value="1">1 (Strong disagree)</option>
                         <option value="2">2</option>
@@ -223,7 +233,7 @@
     <br>
     <div class="row">
         <div class="col-md-4">
-                <select id="questionEight">
+                <select id="questionEight" class = "question">
                         <option value="">8) Your favorite historical period is the 'Roaring Twenties'.</option>
                         <option value="1">1 (Strong disagree)</option>
                         <option value="2">2</option>
@@ -251,7 +261,7 @@
     <br>
     <div class="row">
         <div class="col-md-4">
-                <select id="questionNine">
+                <select id="questionNine" class = "question">
                         <option value="">9) You think baseball is NOT boring to watch on television.</option>
                         <option value="1">1 (Strong disagree)</option>
                         <option value="2">2</option>
@@ -279,7 +289,7 @@
     <br>
     <div class="row">
         <div class="col-md-4">
-                <select id="questionTen">
+                <select id="questionTen" class = "question">
                         <option value="">10) You believe without question that trebuchets are the superior seige weapon.</option>
                         <option value="1">1 (Strong disagree)</option>
                         <option value="2">2</option>
@@ -307,4 +317,39 @@
         </div>
     </div>
 </div>
+<button type="button" class="btn btn-info surveyButton">Submit</button>
+<script>
+
+
+$(".surveyButton").on("click", function(){
+    // alert("button working");
+    console.log($(".question")[0].value)
+    console.log($(".question").val())
+    var input = $(".question")
+    var inputArray = [];
+    for (let i = 0; i < input.length; i++){
+        inputArray.push(input[i].value);
+    }
+    console.log(inputArray, "input array")
+    var surveyFriend = {
+                name:"test",
+                photo: "phototest",
+                scores: inputArray
+
+            }
+            $.post("/api/existingCandidates", surveyFriend, function(data){
+            console.log(data);
+        })
+})
+
+            // $.post("/api/existingCandidates", surveyFriend).then(function(data) {
+            //         console.log(data);
+                   
+            //     });
+
+             
+</script>
+</body>
     </html>
+
+    

@@ -22,12 +22,12 @@ var existingCandidates = [
                     scores:[1, 5, 2, 3, 1, 3, 4, 2, 1, 5]
                     },
                     {
-                        name:"Pretie",
+                        name:"Mike",
                         photo:"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
                         scores:[4, 2, 1, 5, 2, 3, 1, 5, 4, 1]
                         },
                         {
-                            name:"Tuna",
+                            name:"Tom",
                             photo:"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
                             scores:[5, 3, 4, 5, 3, 2, 5, 4, 1, 3]
                             }
@@ -38,4 +38,4 @@ var existingCandidates = [
           app.get("/api/existingCandidates/:newCandidate", function(req, res) {
             var newCandidate = req.params.existingCandidates;
           
-            console.log(newCandidate);
+            console.log(newCandidate)
